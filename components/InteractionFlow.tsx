@@ -391,7 +391,7 @@ const TypewriterStep = ({ onComplete }: { onComplete: () => void }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <p className="text-xl md:text-2xl font-medium leading-relaxed text-white max-w-2xl">
+      <p className="font-romantic text-2xl md:text-4xl font-medium leading-relaxed text-white max-w-2xl">
         {displayText}
         <span className="animate-pulse">|</span>
       </p>

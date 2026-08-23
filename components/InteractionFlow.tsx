@@ -340,45 +340,63 @@ const LoveMeterStep = ({ onComplete }: { onComplete: () => void }) => {
 
 // --- Step 4: Typewriter ---
 const TypewriterStep = ({ onComplete }: { onComplete: () => void }) => {
-    const text = "Happy Birthday Sayangku Cintakuu Fradylaaa!!!!";
-    const [displayedText, setDisplayedText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
+  const texts = [
+    "Happy Birthday Sayangku Cintakuu Fradylaaa!!!! ❤️",
+    "Hari ini bukan cuma tentang bertambahnya usiamu, tapi tentang bersyukur karena aku bisa mengenal seseorang seistimewa kamu. 🥰",
+    "Terima kasih sudah hadir dan menjadi bagian dari cerita hidupku. ❤️",
+    "Semoga di umur yang baru ini, semua hal baik selalu menemukan jalan menuju kamu. Semoga semua impianmu satu per satu menjadi kenyataan. ✨",
+    "Sekali lagi, selamat ulang tahun sayangku. I love you, always. ❤️"
+  ];
 
-    useEffect(() => {
-        let timer: NodeJS.Timeout;
-        if (!isDeleting && displayedText !== text) {
-            timer = setTimeout(() => {
-                setDisplayedText(text.slice(0, displayedText.length + 1));
-            }, 150);
-        } else if (!isDeleting && displayedText === text) {
-            timer = setTimeout(() => setIsDeleting(true), 2500);
-        } else if (isDeleting && displayedText !== "") {
-            timer = setTimeout(() => {
-                setDisplayedText(text.slice(0, displayedText.length - 1));
-            }, 80);
-        } else if (isDeleting && displayedText === "") {
-            onComplete();
+  const [currentText, setCurrentText] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const text = texts[currentText];
+
+    const speed = isDeleting ? 30 : 70;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(text.substring(0, displayText.length + 1));
+
+        if (displayText.length === text.length) {
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 2500);
         }
-        return () => clearTimeout(timer);
-    }, [displayedText, isDeleting, onComplete, text]);
+      } else {
+        setDisplayText(text.substring(0, displayText.length - 1));
 
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: 'blur(20px)' }}
-            className="flex items-center justify-center p-8 relative z-10"
-        >
-            <h1 className="text-5xl sm:text-8xl font-playfair text-white text-center leading-tight">
-                {displayedText}
-                <motion.span
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ repeat: Infinity, duration: 0.8 }}
-                    className="inline-block w-2 sm:w-4 h-12 sm:h-20 bg-red-500 ml-2 align-middle"
-                />
-            </h1>
-        </motion.div>
-    );
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+
+          if (currentText < texts.length - 1) {
+            setCurrentText(currentText + 1);
+          } else {
+            onComplete();
+          }
+        }
+      }
+    }, speed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentText, onComplete]);
+
+  return (
+    <motion.div
+      className="flex flex-col items-center justify-center text-center px-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <p className="text-xl md:text-2xl font-medium leading-relaxed text-white max-w-2xl">
+        {displayText}
+        <span className="animate-pulse">|</span>
+      </p>
+    </motion.div>
+  );
 };
 
 export default function InteractionFlow({ onFlowComplete }: { onFlowComplete: () => void }) {

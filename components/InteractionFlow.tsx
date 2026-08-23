@@ -342,8 +342,8 @@ const LoveMeterStep = ({ onComplete }: { onComplete: () => void }) => {
 const TypewriterStep = ({ onComplete }: { onComplete: () => void }) => {
   const texts = [
     "Happy Birthday Sayangku Cintakuu Fradylaaa!!!! ❤️",
-    "Hari ini bukan cuma tentang bertambahnya usiamu, tapi tentang bersyukur karena aku bisa mengenal seseorang seistimewa kamu. 🥰",
-    "Terima kasih sudah hadir dan menjadi bagian dari cerita hidupku. ❤️",
+    "Hari ini bukan cuma tentang bertambahnya usiamu, tapi tentang rasa bersyukur karena kamu bisa melewati perjalanan panjang hidup ini 🥰",
+    "Semoga sayang selalu diberi kesehatan dan sayang semakin cantik ❤️",
     "Semoga di umur yang baru ini, semua hal baik selalu menemukan jalan menuju kamu. Semoga semua impianmu satu per satu menjadi kenyataan. ✨",
     "Sekali lagi, selamat ulang tahun sayangku. I love you, always. ❤️"
   ];

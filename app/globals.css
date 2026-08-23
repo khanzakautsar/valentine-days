@@ -2,13 +2,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-.font-romantic {
-  font-family: 'Dancing Script', cursive;
-}
-
-.font-elegant {
-  font-family: 'Playfair Display', serif;
-}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -134,4 +127,11 @@
     @apply bg-background text-foreground;
     @apply bg-background text-foreground;
   }
+}
+.font-romantic {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-elegant {
+  font-family: 'Playfair Display', serif;
 }
